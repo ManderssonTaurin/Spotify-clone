@@ -9,6 +9,7 @@ const Player = ({spotifyApi, token}) => {
     const [device, setDevice] = useState();
     const [duration, setDuration] = useState();
     const [progress, setProgress] = useState();
+    const [active, setActive] = useState();
 
     useEffect(() => {
 
@@ -22,7 +23,7 @@ const Player = ({spotifyApi, token}) => {
     
             const player = new window.Spotify.Player({
                 name: 'Alexander Testo',
-                getOAuthToken: cb => { cb(token); },
+                getOAuthToken: (cb) => { cb(token); },
                 volume: 0.5
             });
     
@@ -53,7 +54,9 @@ const Player = ({spotifyApi, token}) => {
                 setIsPaused(state.paused);
                 setCurrentTrack(state.track_window.current_track)
 
-
+                player.getCurrentState().then( (state) => { 
+                    !state ? setActive(false) : setActive(true);
+                });
 
 
             });
@@ -82,16 +85,16 @@ const Player = ({spotifyApi, token}) => {
     },[localPlayer]);
 
 
-    useEffect(()=> {
-        const transferPlayback = async () => {
-            if(device) {
-                const res = await spotifyApi.getMyDevices();
-                console.log(res);
-                await spotifyApi.transferMyPlayback([device], false);
-            }
-        }
+    // useEffect(()=> {
+    //     const transferPlayback = async () => {
+    //         if(device) {
+    //             const res = await spotifyApi.getMyDevices();
+    //             console.log(res);
+    //             await spotifyApi.transferMyPlayback([device], false);
+    //         }
+    //     }
 
-    }, [device, spotifyApi]);
+    // }, [device, spotifyApi]);
 
 
 
@@ -124,7 +127,14 @@ const Player = ({spotifyApi, token}) => {
                 }}
                 
                 md={4} item>
-                    <PlayerControls progress={progress} is_paused={is_paused} duration={duration} player={localPlayer}/>
+                   {active ? (
+                   <PlayerControls 
+                    progress={progress} 
+                    is_paused={is_paused} 
+                    duration={duration} 
+                    player={localPlayer}/> )
+                    : 
+                    (<Box>Please transfer PLayback</Box>)}
 
                 </Grid>
                 <Grid xs={6} md={4} item sx={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
