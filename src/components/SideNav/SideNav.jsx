@@ -14,7 +14,7 @@ const SideNav = ({spotifyApi, token}) => {
             if(!spotifyApi) return; 
 
             const data = await spotifyApi.getUserPlaylists();
-            setPlaylists(data.body.items);
+            setPlaylists(data.body.items || []); // Default to empty array if items are missing
             setLoading(false);
 
             
@@ -26,10 +26,18 @@ const SideNav = ({spotifyApi, token}) => {
 
     const renderPlaylists = () => { 
         if(loading) {
-            return [1,2,3,4,5,6,7,8,9,10].map((_,i) => <NavPlayList key={i} loading={loading}/> );
+            return [1,2,3,4,5,6,7,8,9,10].map((_,i) => (<NavPlayList key={i} loading={loading}/> ));
         }
        
-        return playlists.map((playlist,i) => <NavPlayList name={playlist.name} id={playlist.id} loading={loading} />)
+        return playlists.map((playlist, i) => {
+        
+            if(!playlist || !playlist.name) return null; // Skip invalid items
+            
+            return (
+             <NavPlayList key={playlist.id || i} name={playlist.name} id={playlist.id} loading={loading} /> 
+            )
+            
+        })
     }
     return ( 
         <Box
