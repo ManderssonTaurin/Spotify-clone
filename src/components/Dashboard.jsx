@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist.jsx";
 import Player from "./Player/Player.jsx";
 import MobileNav from "./MobileNav/MobileNav.jsx";
+import Library from "../pages/Library.jsx";
 
 
 
@@ -24,11 +25,11 @@ const Dashboard = ({spotifyApi}) => {
     }, []);
     return ( 
         <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}} >
-            <Box sx={{flex: 1, overFlow: "auto", display: "flex"}} >
+            <Box sx={{flex: 1, overflow: "auto", display: "flex"}} >
                 <SideNav spotifyApi={spotifyApi} token={token}/>
                 <Routes>
                     <Route path="/playlist/:id" element={<Playlist spotifyApi={spotifyApi} token={token} />} />
-                    <Route path="/library" element={<div>Library</div>} />
+                    <Route path="/library" element={<Library spotifyApi={spotifyApi} token={token}/>} />
                     <Route path="/" element={<Home/>} />
 
 

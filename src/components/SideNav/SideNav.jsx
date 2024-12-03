@@ -16,12 +16,8 @@ const SideNav = ({spotifyApi, token}) => {
             const data = await spotifyApi.getUserPlaylists();
             setPlaylists(data.body.items || []); // Default to empty array if items are missing
             setLoading(false);
-
-            
         }
-
         getPlaylists()
-
     }, [spotifyApi, token]);
 
     const renderPlaylists = () => { 
