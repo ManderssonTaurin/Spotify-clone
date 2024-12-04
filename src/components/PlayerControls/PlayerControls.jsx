@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 
 
 const PlayerControls = ({progress, is_paused, duration, player}) => {
-    const [currentProgress, setCurrentProgress] = useState();
+    //har inte tagit med progress i usestate! 
+    const [currentProgress, setCurrentProgress] = useState(progress); 
     const skipStyle = {width: 28, height: 28};
     const playStyle = {width: 28, height: 28};
 
