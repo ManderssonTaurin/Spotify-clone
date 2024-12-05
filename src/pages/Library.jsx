@@ -13,11 +13,15 @@ const Library = ({spotifyApi, token}) => {
             if(!spotifyApi) return; 
 
             const data = await spotifyApi.getUserPlaylists();
-            setPlaylists(data.body.items || []); // Default to empty array if items are missing
+             // Filter out invalid items (null or undefined)
+            const validPlaylists = (data.body.items || []).filter(
+                (playlist) => playlist // exclude null or undefined playlists 
+            );
+            setPlaylists(validPlaylists);
             setLoading(false);
             console.log(data.body.items)
         }
-        getPlaylists()
+        getPlaylists();
     }, [spotifyApi, token]);
 
     const renderPlaylistItem = () => {
