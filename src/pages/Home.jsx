@@ -12,8 +12,9 @@ const Home = () => {
             gao: 5,
 
         }}>
-            <img src="/bild.JPG" alt="Alexander Mandersson" style={{maxWidth:"50%", maxHeight: "50%"}}/>
-            <Button size="large"  variant="contained" href="https://www.youtube.com/watch?v=SQ-QVIOa_0o">Ansök nu!</Button>
+            <img src="/bild.JPG" alt="Alexander Mandersson" style={{maxWidth:"50%", maxHeight: "50%", marginBottom: 16
+            }}/>
+            <Button size="large"  variant="contained" href="">Kontakta mig</Button>
 
 
 
