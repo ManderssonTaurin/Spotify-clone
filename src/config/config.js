@@ -1,6 +1,7 @@
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 export const clientId = import.meta.env.VITE_CLIENT_ID;
-export const liveUrl = import.meta.env.VITE_CLIENT_SECRET;
+export const clientSecret = import.meta.env.VITE_CLIENT_SECRET; // Correctly fetches client secret (if needed elsewhere)
+export const liveUrl = import.meta.env.VITE_LIVE_URL; // live production URL
 export const devUrl = 'http://localhost:5173/';
 export const redirectUrl = import.meta.env.MODE === 'production' ? liveUrl : devUrl; // misstänker att detta kan vara fel tar chatgpd svar istället
 export const scopes = [
