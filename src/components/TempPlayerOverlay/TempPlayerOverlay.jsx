@@ -5,7 +5,7 @@ import PlayerControls from "../PlayerControls/PlayerControls";
 
 
 
-const PlayerOverlay = ({playerOverlayIsOpen, closerOverlay, progress, is_paused, duration, player, current_track, active}) => {
+const TempPlayerOverlay = ({playerOverlayIsOpen, closerOverlay, progress, is_paused, duration, player, current_track, active}) => {
     return (  
         <Box
         id="PlayerOverlay"
@@ -69,4 +69,5 @@ const PlayerOverlay = ({playerOverlayIsOpen, closerOverlay, progress, is_paused,
     );
 }
  
-export default PlayerOverlay;
+export default TempPlayerOverlay;
+

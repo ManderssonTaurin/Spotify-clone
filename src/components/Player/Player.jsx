@@ -2,7 +2,7 @@ import { Avatar, Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import PlayerControls from "../PlayerControls/PlayerControls";
 import PlayerVolume from "../PlayerVolume/PlayerVolume";
-import PlayerOverlay from "../PlayerOverlay/Playeroverlay";
+import TempPlayerOverlay from "../TempPlayerOverlay/TempPlayerOverlay";
 
 
 const Player = ({spotifyApi, token}) => {
@@ -149,7 +149,7 @@ const Player = ({spotifyApi, token}) => {
                 </Grid>
 
             </Grid>
-            <PlayerOverlay playerOverlayIsOpen={playerOverlayIsOpen} 
+            <TempPlayerOverlay playerOverlayIsOpen={playerOverlayIsOpen} 
             closerOverlay={()=> setPlayerOverlayIsOpen(false)}
             progress={progress} 
             is_paused={is_paused} 
